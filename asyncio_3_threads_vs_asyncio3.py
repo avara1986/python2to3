@@ -27,10 +27,11 @@ class BulkUser(object):
     def load_user(self, data):
         sleep(random.randint(3, 4))
         # the magic there
-        return data[0], "message"
+        print(data[1]["nombre"])
+        return data[1]["nombre"], "message"
 
     async def bulk(self):
-        with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=90) as executor:
             loop = asyncio.get_event_loop()
             futures = [loop.run_in_executor(executor, self.load_user, row) for row in self.df.iterrows()]
             responses = [(result, messages) for result, messages in await asyncio.gather(*futures)]
