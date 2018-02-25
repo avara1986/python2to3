@@ -18,17 +18,15 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 
 class BulkUser(object):
-    CSV_NAME = "example_data.csv"
+    CSV_NAME = "example_data2.csv"
 
     def load_csv(self):
         self.df_aux = pd.read_csv(os.path.join(BASE_DIR, self.CSV_NAME))
-        self.df = self.df_aux[:5]
+        self.df = self.df_aux
 
     def load_user(self, data):
-        sleep(random.randint(3, 4))
         # the magic there
-        print(data[1]["nombre"])
-        return data[1]["nombre"], "message"
+        return data[1]["nombre"], data[1]["apellido_1"]
 
     async def bulk(self):
         with concurrent.futures.ThreadPoolExecutor(max_workers=90) as executor:
