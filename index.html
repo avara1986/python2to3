@@ -12588,6 +12588,54 @@ Hello world Python2
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Custom-str-methods">Custom <strong>str</strong> methods<a class="anchor-link" href="#Custom-str-methods">&#182;</a></h3>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Python 2 only:</span>
+<span class="k">class</span> <span class="nc">MyClass</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;Unicode string: </span><span class="se">\u5b54\u5b50</span><span class="s1">&#39;</span>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">unicode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">MyClass</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>    <span class="c1"># prints encoded string</span>
+
+<span class="c1"># Python 2 and 3:</span>
+<span class="kn">from</span> <span class="nn">future.utils</span> <span class="k">import</span> <span class="n">python_2_unicode_compatible</span>
+
+<span class="nd">@python_2_unicode_compatible</span>
+<span class="k">class</span> <span class="nc">MyClass</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">u</span><span class="s1">&#39;Unicode string: </span><span class="se">\u5b54\u5b50</span><span class="s1">&#39;</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">MyClass</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>    <span class="c1"># prints string encoded as utf-8 on Py2</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">unicode_literals</span>
+<span class="kn">from</span> <span class="nn">django.utils.encoding</span> <span class="k">import</span> <span class="n">python_2_unicode_compatible</span>
+
+<span class="nd">@python_2_unicode_compatible</span>
+<span class="k">class</span> <span class="nc">MyClass</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Instance of my class&quot;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Imports-relative">Imports relative<a class="anchor-link" href="#Imports-relative">&#182;</a></h3>
 </div>
 </div>
@@ -12637,8 +12685,7 @@ Hello world Python2
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Iterable dict keys:</p>
-
+<h4 id="Iterar-sobre-las-claves">Iterar sobre las claves<a class="anchor-link" href="#Iterar-sobre-las-claves">&#182;</a></h4>
 </div>
 </div>
 </div><div class="fragment">
@@ -12678,8 +12725,7 @@ Hello world Python2
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Iterable dict values:</p>
-
+<h4 id="Iterar-sobre-los-valores">Iterar sobre los valores<a class="anchor-link" href="#Iterar-sobre-los-valores">&#182;</a></h4>
 </div>
 </div>
 </div><div class="fragment">
@@ -12701,7 +12747,7 @@ Hello world Python2
 </div></div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">heights</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Fred&#39;</span><span class="p">:</span> <span class="mi">175</span><span class="p">,</span> <span class="s1">&#39;Anne&#39;</span><span class="p">:</span> <span class="mi">166</span><span class="p">,</span> <span class="s1">&#39;Joe&#39;</span><span class="p">:</span> <span class="mi">192</span><span class="p">}</span>
@@ -12714,29 +12760,60 @@ Hello world Python2
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>175
+166
+192
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">heights</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Fred&#39;</span><span class="p">:</span> <span class="mi">175</span><span class="p">,</span> <span class="s1">&#39;Anne&#39;</span><span class="p">:</span> <span class="mi">166</span><span class="p">,</span> <span class="s1">&#39;Joe&#39;</span><span class="p">:</span> <span class="mi">192</span><span class="p">}</span>
-<span class="c1"># Python 2 and 3: option 1</span>
-<span class="kn">from</span> <span class="nn">builtins</span> <span class="k">import</span> <span class="nb">dict</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;option 1:&quot;</span><span class="p">)</span>
-<span class="n">heights</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">Fred</span><span class="o">=</span><span class="mi">175</span><span class="p">,</span> <span class="n">Anne</span><span class="o">=</span><span class="mi">166</span><span class="p">,</span> <span class="n">Joe</span><span class="o">=</span><span class="mi">192</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">heights</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>    <span class="c1"># efficient on Py2 and Py3</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="c1"># Python 2 and 3: option 2</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Python 2 and 3: option 2</span>
 <span class="kn">from</span> <span class="nn">six</span> <span class="k">import</span> <span class="n">itervalues</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;option 2:&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">itervalues</span><span class="p">(</span><span class="n">heights</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">itervalues</span><span class="p">(</span><span class="n">heights</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>175
+166
+192
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -12745,8 +12822,7 @@ Hello world Python2
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Iterable dict items:</p>
-
+<h4 id="Iterar-sobre-elementos-de-un-diccionarios">Iterar sobre elementos de un diccionarios<a class="anchor-link" href="#Iterar-sobre-elementos-de-un-diccionarios">&#182;</a></h4>
 </div>
 </div>
 </div><div class="fragment">
@@ -12757,25 +12833,96 @@ Hello world Python2
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Python 2 only:</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="n">heights</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
-    <span class="o">...</span>
-<span class="c1"># Python 2 and 3: option 1</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Python 2 and 3: option 1</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="n">heights</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>    <span class="c1"># inefficient on Py2</span>
-    <span class="o">...</span>
-<span class="c1"># Python 2 and 3: option 2</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Fred: 175
+Anne: 166
+Joe: 192
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Python 2 and 3: option 2</span>
 <span class="kn">from</span> <span class="nn">future.utils</span> <span class="k">import</span> <span class="n">viewitems</span>
 
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Opción 1:&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="n">viewitems</span><span class="p">(</span><span class="n">heights</span><span class="p">):</span>   <span class="c1"># also behaves like a set</span>
-    <span class="o">...</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
 <span class="c1"># Python 2 and 3: option 3</span>
 <span class="kn">from</span> <span class="nn">future.utils</span> <span class="k">import</span> <span class="n">iteritems</span>
 <span class="c1"># or</span>
 <span class="kn">from</span> <span class="nn">six</span> <span class="k">import</span> <span class="n">iteritems</span>
 
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Opción 2:&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="n">iteritems</span><span class="p">(</span><span class="n">heights</span><span class="p">):</span>
-    <span class="o">...</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Opción 1:
+Fred: 175
+Anne: 166
+Joe: 192
+Opción 2:
+Fred: 175
+Anne: 166
+Joe: 192
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -12784,25 +12931,80 @@ Hello world Python2
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>dict keys as a list:</p>
-
+<h4 id="Iterar-sobre-claves-de-un-diccionarios">Iterar sobre claves de un diccionarios<a class="anchor-link" href="#Iterar-sobre-claves-de-un-diccionarios">&#182;</a></h4>
 </div>
 </div>
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Python 2 only:</span>
 <span class="n">keylist</span> <span class="o">=</span> <span class="n">heights</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">keylist</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
-<span class="c1"># Python 2 and 3:</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-12-873414b0674e&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># Python 2 only:</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> keylist <span class="ansi-blue-fg">=</span> heights<span class="ansi-blue-fg">.</span>keys<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">assert</span> isinstance<span class="ansi-blue-fg">(</span>keylist<span class="ansi-blue-fg">,</span> list<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">AssertionError</span>: </pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Python 2 and 3:</span>
 <span class="n">keylist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">keylist</span><span class="p">)</span>
 <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">keylist</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[&#39;Fred&#39;, &#39;Anne&#39;, &#39;Joe&#39;]
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -12811,8 +13013,7 @@ Hello world Python2
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>dict values as a list:</p>
-
+<h4 id="Iterar-como-lista-sobre-valores-de-un-diccionarios">Iterar como lista sobre valores de un diccionarios<a class="anchor-link" href="#Iterar-como-lista-sobre-valores-de-un-diccionarios">&#182;</a></h4>
 </div>
 </div>
 </div><div class="fragment">
@@ -12825,26 +13026,59 @@ Hello world Python2
 <span class="n">heights</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Fred&#39;</span><span class="p">:</span> <span class="mi">175</span><span class="p">,</span> <span class="s1">&#39;Anne&#39;</span><span class="p">:</span> <span class="mi">166</span><span class="p">,</span> <span class="s1">&#39;Joe&#39;</span><span class="p">:</span> <span class="mi">192</span><span class="p">}</span>
 <span class="n">valuelist</span> <span class="o">=</span> <span class="n">heights</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
 <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">valuelist</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">heights</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Fred&#39;</span><span class="p">:</span> <span class="mi">175</span><span class="p">,</span> <span class="s1">&#39;Anne&#39;</span><span class="p">:</span> <span class="mi">166</span><span class="p">,</span> <span class="s1">&#39;Joe&#39;</span><span class="p">:</span> <span class="mi">192</span><span class="p">}</span>
+
 <span class="c1"># Python 2 and 3: option 1</span>
 <span class="n">valuelist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">heights</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>    <span class="c1"># inefficient on Py2</span>
-<span class="c1"># Python 2 and 3: option 2</span>
-<span class="kn">from</span> <span class="nn">builtins</span> <span class="k">import</span> <span class="nb">dict</span>
+<span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">valuelist</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
 
-<span class="n">heights</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">Fred</span><span class="o">=</span><span class="mi">175</span><span class="p">,</span> <span class="n">Anne</span><span class="o">=</span><span class="mi">166</span><span class="p">,</span> <span class="n">Joe</span><span class="o">=</span><span class="mi">192</span><span class="p">)</span>
-<span class="n">valuelist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">heights</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-<span class="c1"># Python 2 and 3: option 3</span>
+
+<span class="c1"># Python 2 and 3: option 2</span>
 <span class="kn">from</span> <span class="nn">future.utils</span> <span class="k">import</span> <span class="n">listvalues</span>
 
 <span class="n">valuelist</span> <span class="o">=</span> <span class="n">listvalues</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">valuelist</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
 <span class="c1"># Python 2 and 3: option 4</span>
 <span class="kn">from</span> <span class="nn">future.utils</span> <span class="k">import</span> <span class="n">itervalues</span>
 <span class="c1"># or</span>
 <span class="kn">from</span> <span class="nn">six</span> <span class="k">import</span> <span class="n">itervalues</span>
 
 <span class="n">valuelist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itervalues</span><span class="p">(</span><span class="n">heights</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">valuelist</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">valuelist</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[175, 166, 192]
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -12874,7 +13108,19 @@ Hello world Python2
 <span class="n">itr</span> <span class="o">=</span> <span class="n">Upper</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
 <span class="k">assert</span> <span class="n">itr</span><span class="o">.</span><span class="n">next</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;H&#39;</span>     <span class="c1"># Py2-style</span>
 <span class="k">assert</span> <span class="nb">list</span><span class="p">(</span><span class="n">itr</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span><span class="p">(</span><span class="s1">&#39;ELLO&#39;</span><span class="p">)</span>
-<span class="c1"># Python 2 and 3: option 1</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Python 2 and 3: option 1</span>
 <span class="kn">from</span> <span class="nn">builtins</span> <span class="k">import</span> <span class="nb">object</span>
 
 <span class="k">class</span> <span class="nc">Upper</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -12899,47 +13145,7 @@ Hello world Python2
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Custom-str-methods">Custom <strong>str</strong> methods<a class="anchor-link" href="#Custom-str-methods">&#182;</a></h3>
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Python 2 only:</span>
-<span class="k">class</span> <span class="nc">MyClass</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s1">&#39;Unicode string: </span><span class="se">\u5b54\u5b50</span><span class="s1">&#39;</span>
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">unicode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-
-<span class="n">a</span> <span class="o">=</span> <span class="n">MyClass</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>    <span class="c1"># prints encoded string</span>
-
-<span class="c1"># Python 2 and 3:</span>
-<span class="kn">from</span> <span class="nn">future.utils</span> <span class="k">import</span> <span class="n">python_2_unicode_compatible</span>
-
-<span class="nd">@python_2_unicode_compatible</span>
-<span class="k">class</span> <span class="nc">MyClass</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="sa">u</span><span class="s1">&#39;Unicode string: </span><span class="se">\u5b54\u5b50</span><span class="s1">&#39;</span>
-
-<span class="n">a</span> <span class="o">=</span> <span class="n">MyClass</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>    <span class="c1"># prints string encoded as utf-8 on Py2</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div></div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Iterators">Iterators<a class="anchor-link" href="#Iterators">&#182;</a></h3>
+<h3 id="Funciones-que-pasan-de-lista-a-iteradores">Funciones que pasan de lista a iteradores<a class="anchor-link" href="#Funciones-que-pasan-de-lista-a-iteradores">&#182;</a></h3>
 </div>
 </div>
 </div><div class="fragment">
@@ -12995,12 +13201,26 @@ Hello world Python2
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="ADIOS-reduce!-:__(">ADIOS reduce! :<strong>__</strong>(<a class="anchor-link" href="#ADIOS-reduce!-:__(">&#182;</a></h3><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="o">+</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">+</span><span class="mi">5</span>
+<h3 id="ADIOS-reduce!-:__(">ADIOS reduce! :<strong>__</strong>(<a class="anchor-link" href="#ADIOS-reduce!-:__(">&#182;</a></h3>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">past.builtins</span> <span class="k">import</span> <span class="n">reduce</span>
+
+
+<span class="k">assert</span> <span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="o">+</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">+</span><span class="mi">5</span>
 </pre></div>
 
 </div>
 </div>
-</div></section></section><section><section>
+</div>
+
+</div></div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
@@ -13096,7 +13316,7 @@ futurize --stage2 mypython2package/*.py</code></pre>
 
 </div>
 </div>
-</div></div><div class="fragment">
+</div></div></section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
@@ -13107,7 +13327,7 @@ futurize --stage2 mypython2package/*.py</code></pre>
 
 </div>
 </div>
-</div></div></section></section><section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">

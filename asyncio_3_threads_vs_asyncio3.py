@@ -22,11 +22,12 @@ class BulkUser(object):
 
     def load_csv(self):
         self.df_aux = pd.read_csv(os.path.join(BASE_DIR, self.CSV_NAME))
-        self.df = self.df_aux
+        self.df = self.df_aux[:10]
 
     def load_user(self, data):
         # the magic there
-        return data[1]["nombre"], data[1]["apellido_1"]
+        sleep(random.randint(3, 4))
+        return True, "Operaciones sobre el señor {} {}".format(data[1]["nombre"], data[1]["apellido_1"])
 
     async def bulk(self):
         with concurrent.futures.ThreadPoolExecutor(max_workers=90) as executor:
@@ -60,6 +61,6 @@ if __name__ == '__main__':
     # args = []
     if len(args) > 0 and args[0] == "async":
         loop = asyncio.get_event_loop()
-        loop.run_until_complete(bulk.bulk2())
+        loop.run_until_complete(bulk.bulk())
     else:
         bulk.bulk_sync()

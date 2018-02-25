@@ -7,13 +7,15 @@ def hello_world1():
 
 
 async def hello_world2():
+    await asyncio.sleep(3)
     print("Hello World2!")
     return True
 
 
 async def hello_world3():
     await asyncio.sleep(1)
-    return "Hello World3!"
+    print("Hello World3!")
+    return True
 
 
 def got_result(future):
