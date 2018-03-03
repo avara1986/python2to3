@@ -26,20 +26,29 @@ body { /* Change the logo urls in the line after if needed */
     font-family: 'Roboto', sans-serif;
     background-color: #111111;
 }
+
 .reveal p {
-color: white;
+    color: white;
 }
+
 .reveal ul, ol {
-color: white;
+    color: white;
 }
+
+.reveal small {
+    color: white !important;
+}
+
 div.output_area pre {
-color: white;
+    color: white;
 }
+
 div.output_stderr {
-background: #F00;
+    background: #F00;
 }
+
 .reveal table th, .reveal table td {
-color: white;
+    color: white;
 }
 
 .reveal h1 {
@@ -52,7 +61,7 @@ color: white;
     color: white;
 }
 
-.reveal h3{
+.reveal h3 {
     font-family: 'Roboto', sans-serif;
     color: white;
 }
