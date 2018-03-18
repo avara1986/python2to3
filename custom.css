@@ -10,6 +10,7 @@
 }
 */
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 :root {
     --color-1: #009D82;
@@ -17,15 +18,23 @@
     --logo-2: url("imgs/p.jpg"); /* Not working, TODO */
     --name: Python 3 is comming; /*Not working, TODO*/
 }
+html{
+	background: #292929; 
+	border: 20px #000000 solid;
+}
 
 body { /* Change the logo urls in the line after if needed */
-    background: url("imgs/python.png"), url("imgs/p.jpg"), url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' height='40px' width='auto'><text x='10' y='20' fill='grey' font-size='30'> Python 3 is coming: https://github.com/avara1986/python2to3 </text></svg>");
-    background-size: 10%, 10%, 95%;
-    background-position: 5% 5%, 95% 5%, 100% 98%;
+    background: 
+    url("imgs/avara.png"), 
+    url("imgs/logos_opacity.png"),
+     url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' height='40px' width='auto'><text x='10' y='20' style='font-family: Montserrat, sans-serif; font-size:18; fill:white; opacity: 0.3;'> Python 3 is coming •  https://github.com/avara1986/python2to3 </text></svg>");
+    background-size: 5%, 8%, 95%;
+    background-position: 3% 3%, 98% 3%, 50% 98%;
     background-repeat: no-repeat, no-repeat, no-repeat;
     font-family: 'Roboto', sans-serif;
-    background-color: #111111;
+	color: white;
 }
+
 
 .reveal p {
     color: white;
@@ -52,19 +61,54 @@ div.output_stderr {
 }
 
 .reveal h1 {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: white;
+    margin: 0 0 -3px 0!important;
+}
+h1:after{
+	content: "";
+	position: relative;
+	border-bottom: 5px solid white;
+	width: 6%;
+	left: 47%;
+	display: block;
+	bottom: -20px;
+}
+.reveal h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    margin: 0 0 50px 0!important;
 }
 
-.reveal h2 {
-    font-family: 'Roboto', sans-serif;
-    color: white;
+h2:after{
+	content: "";
+	position: relative;
+	border-bottom: 5px solid white;
+	width: 6%;
+	display: block;
+	bottom: -20px;
 }
 
 .reveal h3 {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    margin: 0 0 50px 0!important;
+}
+
+h3:after{
+	content: "";
+	position: relative;
+	border-bottom: 5px solid white;
+	width: 6%;
+	display: block;
+	bottom: -20px;
+}
+
+.reveal h4 {
+    font-family: 'Montserrat', sans-serif;
     color: white;
 }
+
 
 .reveal .progress span {
     background: var(--color-1);
@@ -87,6 +131,51 @@ div.output_stderr {
 .reveal a:hover img {
     border-color: var(--color-1);
 }
+
+div.prompt{
+	width: 0px;
+}
+
+.reveal small {
+	text-align: center;
+	margin: 0 0 0 50%;
+	transform: translate(-50%, 0);
+	background: white;
+	padding: 5px 15px;
+	border-radius: 20px;
+	color: black !important;
+	font-weight: bold;
+}
+
+#¿Por-qué-esta-temática\?, #Python-3\.x-News\!{
+	background: var(--color-1);
+	padding: 20px;
+	text-align: center;
+}
+
+#¿Por-qué-esta-temática\?:after, #Python-3\.x-News\!:after{
+	content: "";
+	position: relative;
+	border-bottom: 5px solid white;
+	width: 6%;
+	left: 47%;
+	display: block;
+	bottom: -23px;
+}
+
+div.input_prompt{
+	color: var(--color-1);
+}
+
+pre{
+	max-height: 220px;
+}
+
+#¡GRACIAS-POR-VUESTRO-TIEMPO\!:after{
+	border: none;
+	margin-bottom: 20px;
+}
+
 
 /*********************************************
  * NAVIGATION CONTROLS
@@ -121,4 +210,22 @@ div.output_stderr {
 
 .reveal .controls div.navigate-down.enabled:hover {
     border-top-color: var(--color-2);
+}
+
+.reveal .controls {
+    bottom: 32px;
+    right: 32px;
+ }
+
+.reveal .controls {
+    color: #bebebe;
+    
+}
+.reveal .controls .controls-arrow::before, .reveal .controls .controls-arrow::after{
+	width: 1.5em;
+	left: 5px;
+}
+.controls-arrow{
+	background: white;
+	border-radius: 50px;
 }
