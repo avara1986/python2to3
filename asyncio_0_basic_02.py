@@ -1,22 +1,27 @@
+import random
 import asyncio
-from concurrent.futures import ProcessPoolExecutor
 
 
-def say_boo():
+async def say_boo():
     i = 0
     while i < 5:
         print('...boo {0}'.format(i))
         i += 1
+        await asyncio.sleep(random.randint(0, 5))
 
 
-def say_baa():
+async def say_baa():
     i = 0
     while i < 5:
         print('...baa {0}'.format(i))
         i += 1
+        await asyncio.sleep(random.randint(0, 2))
 
 
-executor = ProcessPoolExecutor(2)
 loop = asyncio.get_event_loop()
-boo = asyncio.ensure_future(loop.run_in_executor(executor, say_boo))
-baa = asyncio.ensure_future(loop.run_in_executor(executor, say_baa))
+corrutine_boo = say_boo()
+print(corrutine_boo)
+asyncio.ensure_future(corrutine_boo)
+asyncio.ensure_future(say_baa())
+print(corrutine_boo)
+loop.run_forever()
